@@ -1,0 +1,19 @@
+{
+  "bound_inclusive": 1999,
+  "endpoint_checks": 602,
+  "inert_count": 153,
+  "invariant_bound_inclusive": 199,
+  "invariant_polynomial_count": 88,
+  "modular_polynomial_count": 8,
+  "modular_polynomial_integer_coefficients": 653,
+  "original_definition_checks": 398,
+  "period_identity_count": 4,
+  "period_q_degree": 20,
+  "prime_count": 301,
+  "schema_version": 1,
+  "scope": "finite certificates and bounded regressions",
+  "split_count": 148,
+  "status": "PASS",
+  "symbolic_identity_count": null,
+  "symbolic_requested": false
+}

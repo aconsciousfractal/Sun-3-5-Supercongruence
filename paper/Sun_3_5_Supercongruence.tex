@@ -1,0 +1,1097 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[hidelinks]{hyperref}
+\ifdefined\pdfinfoomitdate\pdfinfoomitdate=1\fi
+\ifdefined\pdftrailerid\pdftrailerid{}\fi
+\ifdefined\pdfsuppressptexinfo\pdfsuppressptexinfo=15\fi
+\hypersetup{pdftitle={Sun's supercongruence for an Apery-like sequence},
+ pdfauthor={Oleksiy Babanskyy},
+ pdfsubject={A binomial supercongruence, modular periods and a finite differential invariant},
+ pdfkeywords={supercongruences, Apery-like sequences, Franel numbers, modular forms, complex multiplication}}
+\pagestyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Z}{\mathbb Z}\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}\newcommand{\Fp}{\mathbb F_p}
+\newcommand{\HH}{\mathfrak H}
+\newcommand{\A}{\mathcal A}\newcommand{\B}{\mathcal B}
+\newcommand{\dd}{\partial}\newcommand{\Tp}{\mathcal T_p}
+\newcommand{\eps}{\epsilon_p}
+\newcommand{\leg}[2]{\left(\frac{#1}{#2}\right)}
+\newcommand{\smat}[4]{\begin{pmatrix}#1&#2\\#3&#4\end{pmatrix}}
+\DeclareMathOperator{\ord}{ord}
+\allowdisplaybreaks
+\title{Sun's supercongruence for an Ap\'ery-like sequence}
+\author{Oleksiy Babanskyy}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $a_n=\sum_{j=0}^n\binom nj^2\binom{2j}j$.
+We prove that, for every prime $p>3$, the sum
+\[
+ (-1)^{(p-1)/2}\sum_{n=0}^{p-1}\binom{2n}n a_n/54^n
+\]
+is congruent modulo $p^2$ to $4x^2-2p$ when
+$p=x^2+3y^2\equiv1\pmod3$, and to zero when $p\equiv2\pmod3$.
+For the latter primes a quadratic differential invariant of the truncated
+generating polynomial lifts Sun's congruence modulo $p$.
+For the former primes we certify two modular periods directly by identities
+of weight eight, construct a Hecke polynomial with an explicit degree bound,
+and specialize a finite polynomial identity at a complex multiplication point.
+The coefficient at degree $p$ and both parity cases of the complex
+multiplication matrices are treated explicitly. A corresponding evaluation
+of the Franel sum with denominator $50$ follows by the same arguments.
+\end{abstract}
+
+\section{The supercongruence and its two branches}\label{sec:intro}
+For $n\ge0$ define
+\begin{equation}\label{eq:sequences}
+ a_n=\sum_{j=0}^n\binom nj^2\binom{2j}j,
+ \qquad f_n=\sum_{j=0}^n\binom nj^3,
+ \qquad g_n=\binom{2n}n a_n,
+ \qquad b_n=\binom{2n}n f_n.
+\end{equation}
+The integers $f_n$ are the Franel numbers. Write
+\begin{equation}\label{eq:sums}
+ G(t)=\sum_{n\ge0}g_nt^n,\qquad F(t)=\sum_{n\ge0}b_nt^n,
+ \qquad Y_p(t)=\sum_{n=0}^{p-1}y_nt^n
+ \quad\text{if }Y(t)=\sum_{n\ge0}y_nt^n.
+\end{equation}
+In particular, all truncations in this article end at $p-1$. We use
+\begin{equation}\label{eq:B-T}
+ B_p=G_p(1/54),\qquad T_{50,p}=F_p(1/50),
+ \qquad\eps=(-1)^{(p-1)/2}.
+\end{equation}
+The first sum is $p$-integral for $p>3$; the second is used only for $p>5$.
+Congruences between $p$-integral rational numbers are interpreted in $\Z_p$.
+
+\begin{theorem}\label{thm:main}
+For every prime $p>3$,
+\begin{equation}\label{eq:main}
+ \eps B_p\equiv
+ \begin{cases}
+ 4x^2-2p,&p=x^2+3y^2\equiv1\pmod3,\\
+ 0,&p\equiv2\pmod3
+ \end{cases}
+ \pmod{p^2}.
+\end{equation}
+\end{theorem}
+
+This is Conjecture~3.5 of Zhi-Hong Sun
+\cite[p.~2742]{sun}. Every prime $p\equiv1\pmod3$ admits the indicated
+representation; the signs of $x,y$ do not affect the expression $4x^2-2p$.
+Theorem~3.5 of the same paper, on p.~2739, concerns the distinct congruence
+modulo $p$. Its vanishing statement and proof give the input
+\begin{equation}\label{eq:Sun-input}
+ B_p\equiv T_{50,p}\equiv0\pmod p
+ \qquad(p>5,\ p\equiv2\pmod3).
+\end{equation}
+Only this modulo-$p$ result is used in the inert branch below.
+
+The proof separates primes inert and split in $\Q(\sqrt{-3})$.
+Section~\ref{sec:invariant} proves a finite differential invariant and
+uses it to lift \eqref{eq:Sun-input}. Sections~\ref{sec:periods}
+and~\ref{sec:geometry} identify modular periods, their divisors and an exact
+complex multiplication value. Section~\ref{sec:Hecke} constructs a Hecke
+polynomial and proves a polynomial identity modulo $p^2$.
+Section~\ref{sec:split} computes a unit root in both split parity cases and
+completes the proof. The modular polynomial construction follows the method
+of Beukers \cite[Lemma~3.7 and Section~5]{beukers}; all ingredients needed
+here at modulus $p^2$ are proved explicitly. The directly certified periods
+also identify the Franel parametrization recorded in
+\cite[Section~9.15]{beukers}.
+
+\section{A finite differential invariant and the inert primes}
+\label{sec:invariant}
+We first work with a general integral sequence $u_n$, parameters
+$a,b,c\in\Z$, and recurrence
+\begin{equation}\label{eq:recurrence}
+ u_0=1,\quad u_1=b,\qquad
+ (n+1)^2u_{n+1}=(an(n+1)+b)u_n-cn^2u_{n-1}\quad(n\ge1).
+\end{equation}
+The sequences $a_n$ and $f_n$ satisfy this recurrence with parameters
+$(10,3,9)$ and $(7,2,-8)$ respectively
+\cite[pp.~2729--2730]{sun}. Exact telescoping proofs are provided in
+Appendix~\ref{app:recurrences}. Let
+$v_n=\binom{2n}n u_n$, $V(t)=\sum_{n\ge0}v_nt^n$ and $\theta=t\,d/dt$.
+The ratios of successive central binomial coefficients give
+\begin{equation}\label{eq:central-rec}
+ n^3v_n=2(2n-1)(an(n-1)+b)v_{n-1}
+ -4c(n-1)(2n-3)(2n-1)v_{n-2}\quad(n\ge1),
+\end{equation}
+where $v_{-1}=0$. Hence $LV=0$, with
+\begin{equation}\label{eq:L}
+ L=\theta^3-2t(2\theta+1)(a\theta^2+a\theta+b)
+       +4ct^2(\theta+1)(2\theta+1)(2\theta+3).
+\end{equation}
+Put $D(t)=1-4at+16ct^2$. With coefficients to the left of the operators,
+\begin{align}\label{eq:L-expanded}
+ L={}&D\theta^3+(-6at+48ct^2)\theta^2\notag\\
+ &+(-2(a+2b)t+44ct^2)\theta-2bt+12ct^2.
+\end{align}
+Its leading coefficient in ordinary derivatives is $t^3D(t)$.
+
+For any polynomial or formal series $Y$ define
+\begin{equation}\label{eq:invariant}
+ I(Y)=D\bigl(2Y\theta^2Y-(\theta Y)^2\bigr)
+       +(\theta D)Y\theta Y+4t(-b+3ct)Y^2.
+\end{equation}
+\begin{lemma}\label{lem:differential}
+The identity
+\begin{equation}\label{eq:Leibniz}
+ \theta I(Y)=2YLY
+\end{equation}
+holds for every $Y$. In particular $I(V)=0$ in $\Q[[t]]$.
+\end{lemma}
+\begin{proof}
+Set $E=4t(-b+3ct)$. Applying the product rule to \eqref{eq:invariant}
+gives
+\[
+ 2DY\theta^3Y+3(\theta D)Y\theta^2Y
+ +(\theta^2D+2E)Y\theta Y+(\theta E)Y^2.
+\]
+This is $2YLY$ by \eqref{eq:L-expanded}. Since $LV=0$, the series $I(V)$
+is constant in characteristic zero. Its constant term is zero, which proves
+the last assertion.
+\end{proof}
+
+\begin{proposition}\label{prop:finite-invariant}
+Suppose all $u_n$ in \eqref{eq:recurrence} are integers. For any prime
+$p>3$, the polynomial $U(t)=\sum_{n=0}^{p-1}v_nt^n$ satisfies
+\begin{equation}\label{eq:finite-invariant}
+ I(U)\equiv0\pmod{p^2}\qquad\text{in }\Z[t].
+\end{equation}
+\end{proposition}
+\begin{proof}
+The exact residual of the truncation, computed from \eqref{eq:central-rec}, is
+\begin{equation}\label{eq:LU}
+ LU=-p^3v_pt^p+4cp(2p-1)(2p+1)v_{p-1}t^{p+1}.
+\end{equation}
+All coefficients below degree $p$ vanish, the omitted $v_p$ supplies the
+first term, and the highest possible remaining degree is $p+1$.
+Since $p\mid\binom{2p-2}{p-1}$ and $u_{p-1}$ is integral,
+$p\mid v_{p-1}$. Thus $LU\equiv0\pmod{p^2}$ and
+$\theta I(U)\equiv0\pmod{p^2}$.
+
+The latter conclusion alone cannot eliminate coefficients whose degrees
+are divisible by $p$. Here $\deg I(U)\le2p$ and $[t^0]I(U)=0$.
+All positive degrees other than $p,2p$ are units modulo $p^2$, so it remains
+to calculate precisely those two coefficients over $\Z$.
+Since $V-U=v_pt^p+O(t^{p+1})$ and $I(V)=0$, comparison at degree $p$
+gives
+\begin{equation}\label{eq:resonance-p}
+ [t^p]I(U)=-2p^2v_p.
+\end{equation}
+Indeed the only contribution of the omitted term at this degree pairs
+the constant $V(0)=1$ with $\theta^2(v_pt^p)$ in $2V\theta^2V$;
+the other terms contain an extra $t$ or a derivative of the constant.
+At degree $2p$, only the highest term of each factor $U$ contributes.
+The resulting scalar is
+\[
+ 16c(p-1)^2+32c(p-1)+12c=4c(2p-1)(2p+1),
+\]
+so
+\begin{equation}\label{eq:resonance-2p}
+ [t^{2p}]I(U)=4c(2p-1)(2p+1)v_{p-1}^2.
+\end{equation}
+Both coefficients are divisible by $p^2$. This treats every degree.
+\end{proof}
+
+\begin{theorem}[Lifting at a nonsingular parameter]\label{thm:lift}
+Under the hypotheses of Proposition~\ref{prop:finite-invariant}, let
+$t_0\in\Z_p$ and suppose $t_0D(t_0)\in\Z_p^\times$.
+Then
+\begin{equation}\label{eq:lift}
+ U(t_0)\equiv0\pmod p\quad\Longrightarrow\quad
+ U(t_0)\equiv0\pmod{p^2}.
+\end{equation}
+The conclusion holds for every $p$-integral lift of the same residue class.
+\end{theorem}
+\begin{proof}
+Let $\overline U$ be the reduction in $\Fp[t]$. It is nonzero, since
+$U(0)=1$, and has degree less than $p$. At a zero $\bar t_0$ of
+$\overline U$, the reduction of \eqref{eq:finite-invariant} gives
+$-D(\bar t_0)(\theta\overline U(\bar t_0))^2=0$.
+Thus $\theta\overline U(\bar t_0)=0$, and $\bar t_0\ne0$ implies that
+the zero has multiplicity at least two.
+
+It has multiplicity exactly two. Otherwise write
+$\overline U(t)=w(t-\bar t_0)^m+O((t-\bar t_0)^{m+1})$ with
+$w\ne0$ and $3\le m\le p-1$. Equation~\eqref{eq:LU} implies
+$\overline L\overline U=0$. The coefficient of local degree $m-3$ in
+this equation is
+\[
+ \bar t_0^3D(\bar t_0)m(m-1)(m-2)w\ne0.
+\]
+Lower derivatives have order at least $m-2$ and cannot cancel it.
+This contradiction proves that $\theta^2U(t_0)$ is a unit, since its
+reduction is $\bar t_0^2\overline U''(\bar t_0)\ne0$.
+
+Now $U(t_0)$ and $\theta U(t_0)$ are both divisible by $p$.
+Evaluating the finite identity \eqref{eq:finite-invariant} at $t_0$
+therefore leaves
+\[
+ 2D(t_0)\theta^2U(t_0)U(t_0)\equiv0\pmod{p^2}.
+\]
+The coefficient of $U(t_0)$ is a unit, giving \eqref{eq:lift}.
+All nonvanishing conditions depended only on the residue class of $t_0$.
+\end{proof}
+
+For $a_n$ and $f_n$ the discriminants specialize to
+\begin{align}\label{eq:discriminants}
+ D_a(t)&=(1-4t)(1-36t),&D_a(1/54)&=25/81,\notag\\
+ D_f(t)&=(1+4t)(1-32t),&D_f(1/50)&=243/625.
+\end{align}
+The evaluation points $1/54$ and $1/50$ and the displayed discriminant
+values are units for $p>5$.
+Equations~\eqref{eq:Sun-input} and~\eqref{eq:lift} give
+\begin{equation}\label{eq:inert-result}
+ B_p\equiv T_{50,p}\equiv0\pmod{p^2}
+ \qquad(p>5,\ p\equiv2\pmod3).
+\end{equation}
+For $p=5$ the first discriminant is not a unit, so we calculate directly.
+The initial values $a_0,\ldots,a_4$ are $1,3,15,93,639$.
+The five summands of $B_5$ are respectively $1,14,15,15,5$ modulo $25$;
+their sum is $50\equiv0\pmod{25}$.
+This completes the inert branch of Theorem~\ref{thm:main}.
+
+\section{Direct certification of the two modular periods}
+\label{sec:periods}
+Let $q=e^{2\pi i\tau}$, $\tau\in\HH$, and let
+$\eta_d=\eta(d\tau)$, where
+$\eta(\tau)=q^{1/24}\prod_{m\ge1}(1-q^m)$.
+Define
+\begin{equation}\label{eq:eta-ABJ}
+ \A=\frac{(\eta_2\eta_3)^7}{(\eta_1\eta_6)^5},\qquad
+ \B=\frac{(\eta_1\eta_6)^7}{(\eta_2\eta_3)^5},\qquad
+ J=\A\B=(\eta_1\eta_2\eta_3\eta_6)^2,
+\end{equation}
+and
+\begin{equation}\label{eq:Theta-t}
+ \Theta_+=\A+\B,\quad\Theta_-=\A-\B,
+ \qquad t_+=J/\Theta_+^2,\quad t_-=J/\Theta_-^2.
+\end{equation}
+These products give
+$\Theta_\pm\in1+q\Z[[q]]$ and $t_\pm\in q+q^2\Z[[q]]$.
+The eta criterion and cusp-order formula
+\cite[p.~2]{rousewebb} show that $\A,\B$ are holomorphic forms of weight
+two with trivial character on $\Gamma_0(6)$, and $J$ is a form of weight four.
+At the four cusps, represented by denominators $1,2,3,6$, the respective
+orders are
+\begin{equation}\label{eq:cusp-orders}
+ \ord\A=(0,1,1,0),\qquad\ord\B=(1,0,0,1),
+ \qquad\ord J=(1,1,1,1).
+\end{equation}
+The underlying eta exponent data are in Appendix~\ref{app:certificates}.
+Eta has no zeros in $\HH$. In particular $J$ has no interior zeros, and
+each $\Theta_\pm$ has a nonzero constant term at every cusp: precisely
+one of $\A,\B$ has order zero there.
+
+Distinguish $\dd=q\,d/dq=(2\pi i)^{-1}d/d\tau$ from $\theta=t\,d/dt$.
+We simultaneously use the two rows
+\begin{equation}\label{eq:period-rows}
+ (a,b,c,\Theta)=(10,3,9,\Theta_+),\qquad
+ (a,b,c,\Theta)=(7,2,-8,\Theta_-).
+\end{equation}
+Put $\ell=\dd J/J$ and $W=\Theta\ell-2\dd\Theta$.
+\begin{proposition}\label{prop:P}
+For each row of \eqref{eq:period-rows},
+\begin{align}
+ W^2-\Theta^4+4aJ\Theta^2-16cJ^2&=0,\label{eq:P1}\\
+ 2\Theta\dd^2\Theta-3(\dd\Theta)^2
+       -4bJ\Theta^2+12cJ^2&=0.\label{eq:P2}
+\end{align}
+\end{proposition}
+\begin{proof}
+First we verify the space containing the two residuals.
+For $\gamma=\smat{\alpha}{\beta_0}{\gamma_0}{\delta_0}\in\Gamma_0(6)$,
+write $j=\gamma_0\tau+\delta_0$ and $\lambda=\gamma_0/(2\pi i)$.
+Differentiating the weight-two and weight-four transformation laws yields
+\begin{align*}
+ \Theta(\gamma\tau)&=j^2\Theta,\\
+ (\dd\Theta)(\gamma\tau)&=j^4\dd\Theta+2\lambda j^3\Theta,\\
+ (\dd^2\Theta)(\gamma\tau)&=j^6\dd^2\Theta
+             +6\lambda j^5\dd\Theta+6\lambda^2j^4\Theta,\\
+ \ell(\gamma\tau)&=j^2\ell+4\lambda j.
+\end{align*}
+Consequently $W$ transforms with weight four, and
+$2\Theta\dd^2\Theta-3(\dd\Theta)^2$ transforms with weight eight.
+Every other term in \eqref{eq:P1} and~\eqref{eq:P2} has weight eight.
+There are no interior poles, since the only denominator at this stage is $J$.
+
+At a cusp choose a scaling matrix $\sigma$, and put
+$y=\Theta|_2\sigma$, $j_0=J|_4\sigma$.
+The same differentiation laws give
+\[
+ W|_4\sigma=y\frac{\dd j_0}{j_0}-2\dd y,
+ \qquad
+ (2\Theta\dd^2\Theta-3(\dd\Theta)^2)|_8\sigma
+ =2y\dd^2y-3(\dd y)^2.
+\]
+If the cusp has width $w$ and local parameter $Q=e^{2\pi i\tau/w}$,
+then $j_0=Q^r u(Q)$, $u(0)\ne0$, and
+$\dd j_0/j_0=(r+Qu'/u)/w$ has no negative powers.
+Both $y$ and its derivatives are holomorphic there. Thus the two
+residuals belong to $M_8(\Gamma_0(6))$.
+
+Their coefficients of $q^0,\ldots,q^8$ are zero by the exact product
+certificate in Appendix~\ref{app:certificates}.
+The index of $\Gamma_0(6)$ in $\mathrm{SL}_2(\Z)$ is
+$6(1+1/2)(1+1/3)=12$. The classical valence bound is therefore
+$8\cdot12/12=8$. Indeed, for a nonzero holomorphic form of weight $k$ on
+$\Gamma_0(6)$, the product of its weight-$k$ slashes over the twelve
+cosets is a nonzero holomorphic level-one form of weight $12k$.
+Its order at infinity is at least that of the original form, since all
+other factors have nonnegative orders. The level-one valence formula
+bounds that order by $12k/12=k$. Applying this with $k=8$, neither
+residual can have order at least nine unless it is zero. Both residuals
+vanish identically.
+\end{proof}
+
+\begin{theorem}\label{thm:periods}
+The normalized periods satisfy
+\begin{equation}\label{eq:periods}
+ G(t_+(q))=\Theta_+(q),\qquad F(t_-(q))=\Theta_-(q).
+\end{equation}
+These are identities of formal series and of their analytic germs at $q=0$.
+\end{theorem}
+\begin{proof}
+Use one row of \eqref{eq:period-rows} and $t=J/\Theta^2$.
+All formal substitutions are invertible because $t=q+O(q^2)$.
+Set
+\[
+ e=\frac{\dd t}{t}=\ell-2\frac{\dd\Theta}{\Theta}=\frac W\Theta.
+\]
+Equation~\eqref{eq:P1} says $e^2=D\Theta^2$, where
+$D=1-4at+16ct^2$. The series $e,\Theta,D$ all have constant term one.
+Since $\dd=e\theta$, differentiation gives
+\[
+ 2\dd e=(\theta D)\Theta^2+2D\Theta\theta\Theta.
+\]
+Substitute $\dd\Theta=e\theta\Theta$ and
+$\dd^2\Theta=e^2\theta^2\Theta+(\dd e)\theta\Theta$ in
+\eqref{eq:P2}. Its left side becomes $\Theta^2I(\Theta)$,
+with $I$ as in \eqref{eq:invariant}. Hence $I(\Theta)=0$;
+Lemma~\ref{lem:differential} and the fact that $\Theta$ is a formal unit
+give $L\Theta=0$.
+
+For each $n\ge1$ the new coefficient of a solution to $LY=0$ is
+multiplied by $n^3$, as is explicit in \eqref{eq:central-rec}.
+There is a unique solution in $\Q[[t]]$ with constant term one.
+The binomially defined series $G,F$ satisfy this equation for the respective
+rows and have that constant term. This proves \eqref{eq:periods}.
+The eta products and the inverse parameter are analytic near $q=0$, so the
+same equalities hold as analytic germs.
+\end{proof}
+
+\section{The extended group, divisors and the CM parameter}
+\label{sec:geometry}
+For a real matrix $M=\smat{a_0}{b_0}{c_0}{d_0}$ with positive determinant,
+use the weight-two slash convention
+\begin{equation}\label{eq:slash}
+ (Y|_2M)(\tau)=\det(M)(c_0\tau+d_0)^{-2}Y(M\tau).
+\end{equation}
+In particular, if $Y|_2M=\chi(M)Y$ then
+\begin{equation}\label{eq:transform}
+ Y(M\tau)=\frac{\chi(M)}{\det M}(c_0\tau+d_0)^2Y(\tau).
+\end{equation}
+Let $\Gamma$ be the projective group generated by $\Gamma_0(6)$ and
+\begin{equation}\label{eq:Ws}
+ W_3=\smat3163,\qquad W_6=\smat0{-1}60.
+\end{equation}
+
+\begin{lemma}\label{lem:character}
+The forms $\Theta_\pm$ are modular of weight two on the extended group
+$\Gamma$, with characters trivial on their restriction to $\Gamma_0(6)$.
+The quotient $\Gamma/\Gamma_0(6)$ has order four projectively.
+If $W_2$ denotes the class of $W_6W_3$, the characters are
+\begin{equation}\label{eq:characters}
+\begin{array}{c|rrrr}
+ e&1&2&3&6\\\hline
+ \chi_+(W_e)&1&-1&1&-1\\
+ \chi_-(W_e)&1&1&-1&-1.
+\end{array}
+\end{equation}
+\end{lemma}
+\begin{proof}
+The transformation law for eta
+\cite[23.18.5--23.18.7]{dlmf}, for
+$M=\left(\begin{smallmatrix}a_0&b_0\\c_0&d_0\end{smallmatrix}\right)
+\in\mathrm{SL}_2(\Z)$ with $c_0>0$, can be written as
+\[
+ \eta\!\left(\frac{a_0\tau+b_0}{c_0\tau+d_0}\right)
+ =\exp\!\left(\pi i\left(\frac{a_0+d_0}{12c_0}
+          -s(d_0,c_0)-\frac14\right)\right)
+ (c_0\tau+d_0)^{1/2}\eta(\tau),
+\]
+with the principal square root and Dedekind sum $s$.
+For $\tau'=W_3\tau$ and $L_0=6\tau+3$, the transformations of
+$\eta(\tau'),\eta(2\tau'),\eta(3\tau'),\eta(6\tau')$ arise from
+\[
+ \smat1123,\quad\smat1213,\quad\smat3121,\quad\smat3211
+\]
+acting respectively on $3\tau,6\tau,\tau,2\tau$.
+Their phases, in units of $\pi i$, are
+$-1/12,1/12,-1/12,1/12$; the Dedekind sums here are zero.
+The phases cancel in each pair, and the linear factors are positive real
+multiples of $L_0$, so the principal roots multiply without an extra sign.
+Thus
+\[
+ (\eta_2\eta_3)(\tau')=\frac{L_0}{\sqrt3}(\eta_1\eta_6)(\tau),
+ \qquad
+ (\eta_1\eta_6)(\tau')=\frac{L_0}{\sqrt3}(\eta_2\eta_3)(\tau).
+\]
+It follows that $\A(\tau')=L_0^2\B(\tau)/3$ and
+$\B(\tau')=L_0^2\A(\tau)/3$. Hence
+$\A|_2W_3=\B$ and $\B|_2W_3=\A$.
+For $W_6$ the formula $\eta(-1/z)=\sqrt{-iz}\eta(z)$ multiplies each
+eta pair by $\sqrt6(-i\tau)$. Both $\A,\B$ acquire the factor
+$-6\tau^2$, giving $\A|_2W_6=-\A$ and $\B|_2W_6=-\B$.
+
+The generators normalize the base group. Indeed, for
+$\gamma=\smat{a_0}{b_0}{6c_0}{d_0}$,
+\begin{align}\label{eq:conjugations}
+ W_6\gamma W_6^{-1}&=\smat{d_0}{-c_0}{-6b_0}{a_0},\notag\\
+ W_3\gamma W_3^{-1}&=
+ \begin{pmatrix}
+ 3a_0+6c_0-6b_0-2d_0&-a_0-2c_0+3b_0+d_0\\
+ 6a_0+18c_0-12b_0-6d_0&-2a_0-6c_0+6b_0+3d_0
+ \end{pmatrix}.
+\end{align}
+Moreover
+$W_3^2=3\smat5{2}{12}5$, $W_6^2=-6I$ and
+$(W_3W_6)^2=-18I$. These relations give at most four classes modulo the
+base group and scalars. They are distinct because their determinant square
+classes are $1,3,6,2$ in $\Q^\times/(\Q^\times)^2$.
+The transformations just proved yield \eqref{eq:characters}.
+\end{proof}
+
+Introduce weight-zero modular functions
+\begin{equation}\label{eq:h-h3-R}
+ h=\frac{\eta_2\eta_6^5}{\eta_1^5\eta_3},\qquad
+ h_3=\frac{\eta_3^{12}}{\eta_1^{12}},\qquad R=\A/\B.
+\end{equation}
+Their characters on $\Gamma_0(6)$ are trivial by the eta criterion.
+The cusp orders of $h$ are $(-1,0,0,1)$, and it has no interior poles.
+It consequently has one simple pole on the compact curve $X_0(6)$.
+The resulting map to $\mathbb P^1$ has degree one, so $h$ is a coordinate
+and the function field is $\C(h)$.
+
+\begin{lemma}\label{lem:E}
+The following identities hold:
+\begin{align}
+ h_3(1+9h)&=h(1+8h)^2,\label{eq:E1}\\
+ Rh&=(1+8h)(1+9h)=1+17h+72h^2.\label{eq:E2}
+\end{align}
+\end{lemma}
+\begin{proof}
+Let $E_1,E_2$ be left side minus right side. Exact product expansion gives
+$E_1=O(q^9)$ and $E_2=O(q^{11})$; the coefficient data are in
+Appendix~\ref{app:certificates}. Set
+\[
+ M_1=\eta_1^{17}\eta_3^3,\qquad
+ M_2=\eta_1^{17}\eta_3^2\eta_6^7.
+\]
+Each $M_iE_i$ is a sum of eta monomials with nonnegative exponents, listed
+in the appendix. Thus it is holomorphic in $\HH$ and at all cusps.
+Since $E_i$ is invariant, the whole sum has the multiplier of $M_i$.
+Eta multipliers have order dividing $24$; hence
+$(M_1E_1)^{24}\in M_{240}(\Gamma_0(6))$ and
+$(M_2E_2)^{24}\in M_{312}(\Gamma_0(6))$ with trivial character.
+Their orders at infinity are at least
+\[
+ 24(13/12+9)=242>240,\qquad
+ 24(65/24+11)=329>312.
+\]
+The same index-$12$ valence bound forces both forms to vanish.
+Since $M_i$ is nonzero in $\HH$, this proves $E_i=0$.
+\end{proof}
+
+\begin{proposition}\label{prop:geometry}
+Each $t_\pm$ is a Hauptmodul for $\Gamma$.
+Each $\Theta_\pm$ has no cusp zeros, and its interior zeros are exactly
+the simple zeros above the double poles of $t_\pm$ on $X_0(6)$.
+\end{proposition}
+\begin{proof}
+Equation~\eqref{eq:E2} gives
+\begin{align}\label{eq:t-rational}
+ t_+&=\frac{R}{(1+R)^2}
+ =\frac{h(1+8h)(1+9h)}{(1+6h)^2(1+12h)^2},\notag\\
+ t_-&=\frac{R}{(R-1)^2}
+ =\frac{h(1+8h)(1+9h)}{(1+16h+72h^2)^2}
+ =\frac{t_+}{1-4t_+}.
+\end{align}
+The numerator and denominator in each expression are coprime.
+The quadratic $1+16h+72h^2$ has discriminant $-32\ne0$.
+Thus each rational map has degree four and two double poles on $X_0(6)$.
+The transformations of $\A,\B$ show that $t_\pm$ are $\Gamma$-invariant.
+Since the quotient map has degree four by Lemma~\ref{lem:character},
+each $t_\pm$ has degree one on the quotient curve and is a Hauptmodul.
+
+There are no elliptic points for $\Gamma_0(6)$ modulo scalars.
+An elliptic matrix of determinant one would have trace $0$ or $\pm1$.
+Trace zero implies $a_0^2\equiv-1\pmod3$, impossible; odd trace is
+impossible modulo two, since $a_0d_0\equiv1\pmod2$.
+Interior local coordinates on $X_0(6)$ are therefore ordinary coordinates.
+At cusps $\Theta_\pm$ are nonzero by \eqref{eq:cusp-orders}.
+The identity $t_\pm\Theta_\pm^2=J$ and the absence of zeros of $J$ in
+$\HH$ imply that above each double pole the corresponding form has a
+simple zero, and that it has no other interior zeros.
+\end{proof}
+
+\begin{lemma}\label{lem:CM-point}
+Let $\delta=\sqrt{-3}$ have positive imaginary part and let
+$\beta=\delta/3=i/\sqrt3$. Then
+\begin{equation}\label{eq:CM-point}
+ h(\beta)=\frac{\sqrt3-1}{24},\qquad
+ t_+(\beta)=1/54,\qquad t_-(\beta)=1/50.
+\end{equation}
+Both $\Theta_+(\beta)$ and $\Theta_-(\beta)$ are nonzero.
+\end{lemma}
+\begin{proof}
+Since $3\beta=-1/\beta$, inversion of eta gives
+$h_3(\beta)=(-i\beta)^6=1/27$.
+Equation~\eqref{eq:E1} becomes
+\[
+ 27h(1+8h)^2-(1+9h)=(6h+1)(288h^2+24h-1)=0.
+\]
+Eta products are positive on the positive imaginary axis, so $h(\beta)>0$.
+This selects the positive root $(\sqrt3-1)/24$.
+The polynomial identity
+\[
+ 54h(1+17h+72h^2)-(1+18h+72h^2)^2
+ =-(18h^2-6h-1)(288h^2+24h-1)
+\]
+and \eqref{eq:t-rational} give $t_+(\beta)=1/54$;
+its denominator is nonzero at positive $h$. The last expression in
+\eqref{eq:t-rational} yields $t_-(\beta)=1/50$.
+Finally $J(\beta)\ne0$ and the two parameters are finite, so neither
+form vanishes at $\beta$.
+\end{proof}
+
+\section{The Hecke polynomial and finite specialization}
+\label{sec:Hecke}
+In this section use either pair $(t,\Theta)=(t_+,\Theta_+)$ or
+$(t_-,\Theta_-)$, and let $Y=G$ or $F$ respectively.
+In particular, $\Theta$ is a weight-two modular form on the extended
+group $\Gamma$ with character trivial on $\Gamma_0(6)$, as proved in
+Lemma~\ref{lem:character}. This extended-group hypothesis is used in
+the Hecke orbit construction \cite[Lemma~3.7]{beukers}.
+
+We spell out that orbit at level six. For $p>3$ set
+\[
+ \mathcal M(6,p)=
+ \left\{\smat{a_0}{b_0}{6c_0}{d_0}:
+ a_0,b_0,c_0,d_0\in\Z,\ a_0d_0-6b_0c_0=p\right\}.
+\]
+The gcd of the first column is $1$ or $p$.
+A Bezout identity takes a primitive first column to $(1,0)^T$ by left
+multiplication with $\Gamma_0(6)$. If the gcd is $p$, first divide the
+column by $p$; its lower entry is still divisible by six.
+The $p+1$ distinct left classes therefore have representatives
+\begin{equation}\label{eq:Hecke-reps}
+ \gamma_\infty=\smat p001,
+ \qquad \gamma_k=\smat1k0p\quad(0\le k<p).
+\end{equation}
+For clarity, when the first-column gcd is $g$, the lower row of the
+reducing matrix can be chosen as $(-6c_0/g,a_0/g)$, and a Bezout upper
+row makes its determinant one. Its lower left entry is divisible by six
+because $p$ is coprime to six. The resulting upper triangular matrix is
+$\smat1k0p$ for $g=1$, with $k$ reduced modulo $p$ by a translation;
+it is $\smat p001$ for $g=p$, after eliminating its upper right entry.
+These representatives are distinct by multiplying the triangular inverses.
+
+The conjugation formulas \eqref{eq:conjugations} preserve
+$\mathcal M(6,p)$; they do not require determinant one. Thus $W_3,W_6$
+permute its left classes. Put $Q_\gamma=(\Theta|_2\gamma)/\Theta$.
+These quotients are independent of the representative because the base
+character is trivial. For $w\in\Gamma$ and $\gamma'=w^{-1}\gamma w$,
+\[
+ Q_\gamma(w\tau)
+ =\frac{\Theta|_2\gamma w}{\Theta|_2w}
+ =\frac{\Theta|_2w\gamma'}{\chi(w)\Theta}
+ =Q_{\gamma'}(\tau).
+\]
+The character cancels, even though it need not be trivial on $\Gamma$.
+
+\begin{lemma}\label{lem:Hecke-core}
+For every prime $p>3$ there is a polynomial
+$\Tp(X,t)=\sum_{m=0}^{p+1}C_m(t)X^m\in\Z[X,t]$ such that
+\begin{equation}\label{eq:Hecke-product}
+ \Tp(X,t(\tau))=
+ \left(1-\frac{\Theta(p\tau)}{\Theta(\tau)}X\right)
+ \prod_{k=0}^{p-1}
+ \left(p^2-\frac{\Theta((\tau+k)/p)}{\Theta(\tau)}X\right).
+\end{equation}
+Its coefficients satisfy
+\begin{equation}\label{eq:Hecke-core}
+ \deg C_m\le\lfloor m/2\rfloor,\qquad
+ \Tp(X,t)\equiv C_p(t)X^p+C_{p+1}(t)X^{p+1}\pmod{p^2},
+ \quad C_{p+1}(t)\equiv1\pmod p.
+\end{equation}
+\end{lemma}
+\begin{proof}
+The product in \eqref{eq:Hecke-product} equals
+$p^{2p}\prod_{[\gamma]}(1-Q_\gamma X/p)$ using
+\eqref{eq:Hecke-reps}. Hence its coefficients are $\Gamma$-invariant.
+The numerator of each $Q_\gamma$ is holomorphic in $\HH$.
+There are also no poles at cusps: at a cusp represented by $\sigma$,
+the quotient is
+\[
+ \frac{\Theta|_2\gamma\sigma}{\Theta|_2\sigma}.
+\]
+The denominator has nonzero constant term. Write
+$\gamma\sigma=\rho u$, where $\rho\in\mathrm{SL}_2(\Z)$ and $u$
+is upper triangular with positive determinant. The numerator is an
+expansion of the holomorphic form at a cusp, with the cusp coordinate
+rescaled by a positive power. It has no negative exponents.
+
+Thus the only possible poles of a coefficient are the zeros of $\Theta$,
+which lie over the pole of $t$. Since $t$ is a coordinate on the quotient,
+each coefficient is a polynomial in $t$, initially over $\C$.
+A term of the coefficient of $X^m$ has at most $m$ factors $\Theta^{-1}$.
+Above $X_0(6)$ its pole order is at most $m$, while the pole order of $t$
+is two. A polynomial of degree $d$ in $t$ has pole order $2d$ there.
+This proves $\deg C_m\le\lfloor m/2\rfloor$.
+
+For integral coefficients, put $s=q^{1/p}$ and $\zeta=\zeta_p$.
+The product expansions lie in $\Z[\zeta][[s]]$.
+The symmetry $s\mapsto\zeta s$ removes exponents not divisible by $p$,
+and the Galois automorphisms $\zeta\mapsto\zeta^a$ permute the factors.
+The surviving coefficients are rational algebraic integers, hence integers
+in $\Z[[q]]$. Because $t=q+q^2\Z[[q]]$, successive subtraction of the
+lowest terms against powers of $t$ makes all polynomial coefficients
+integers. The same triangular argument transfers coefficientwise
+congruences from $q$ to $t$.
+
+Let $Q=\Theta(q)/\Theta(q^p)$ and
+$R_k=\Theta(q)/\Theta(\zeta^ks)$. The product is exactly
+\[
+ C_{p+1}(t)(X-Q)\prod_{k=0}^{p-1}(X-p^2R_k).
+\]
+The symmetric functions of the $R_k$ are in $\Z[[q]]$ by the same
+symmetries. Modulo $p^2$, the last product is $X^p$, which proves the
+middle congruence in \eqref{eq:Hecke-core}.
+The leading coefficient, with positive sign since $p+1$ is even, is
+\[
+ C_{p+1}(t(q))=
+ \frac{\Theta(q^p)\prod_{k=0}^{p-1}\Theta(\zeta^ks)}{\Theta(q)^{p+1}}.
+\]
+The product in the numerator is integral in $q$.
+Modulo $1-\zeta$ it is $\Theta(s)^p\equiv\Theta(q)$ in characteristic
+$p$. Since $(1-\zeta)\Z[\zeta]\cap\Z=p\Z$, this gives the congruence
+modulo $p$ on its integer coefficients. Finally
+$\Theta(q^p)\equiv\Theta(q)^p\pmod p$ proves
+$C_{p+1}\equiv1\pmod p$.
+\end{proof}
+
+\begin{lemma}\label{lem:endpoint}
+For every prime $p>3$,
+\begin{equation}\label{eq:endpoint}
+ g_p\equiv g_1=6\pmod{p^2},\qquad
+ b_p\equiv b_1=4\pmod{p^2}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+The exact product
+$\binom{2p}p=2\prod_{k=1}^{p-1}(1+p/k)$ and
+$\sum_{k=1}^{p-1}k^{-1}\equiv0\pmod p$ give
+$\binom{2p}p\equiv2\pmod{p^2}$.
+The latter harmonic congruence follows because inversion permutes
+the nonzero residues modulo $p$. In $a_p$ all internal terms have the
+factor $\binom pk^2$, while the two endpoint terms are
+$1$ and $\binom{2p}p$. Thus $a_p\equiv3\pmod{p^2}$.
+For $f_p$ all internal terms are divisible by $p^3$, so
+$f_p\equiv2\pmod{p^3}$. Multiplication proves \eqref{eq:endpoint}.
+\end{proof}
+
+\begin{theorem}[Finite specialization]\label{thm:specialization}
+For either pair of period and parameter, the polynomial identity
+\begin{equation}\label{eq:finite-specialization}
+ C_p(t)+C_{p+1}(t)Y_p(t)\equiv0\pmod{p^2}
+\end{equation}
+holds in $\Z[t]$. If $t_0\in\Z_p$ and $z$ is an exact root of
+$\Tp(X,t_0)$ in a finite extension of $\Q_p$ with valuation zero, then
+$Y_p(t_0)\equiv z\pmod{p^2}$ in its ring of integers.
+\end{theorem}
+\begin{proof}
+The series $Q=\Theta(q)/\Theta(q^p)$ is a root of
+\eqref{eq:Hecke-product}, and is a formal unit with constant term one.
+Dividing its equation from \eqref{eq:Hecke-core} by the formal unit $Q^p$
+gives $C_p+C_{p+1}Q\equiv0\pmod{p^2}$.
+Write $C_{p+1}=1+pD_p$. Then
+\begin{equation}\label{eq:K}
+ Q\equiv K(t):=-(1-pD_p(t))C_p(t)\pmod{p^2},\qquad
+ \deg K\le(p-1)/2+(p+1)/2=p.
+\end{equation}
+The formal inverse $q(t)$ is integral. The period identity
+\eqref{eq:periods} expresses $Q$ as $Y(t)/Y(t^\sigma)$, where
+$t^\sigma=t(q(t)^p)=t^p+O(t^{p+1})$. Hence
+\begin{equation}\label{eq:Q-boundary}
+ Q=Y_p(t)+(y_p-y_1)t^p+O(t^{p+1}).
+\end{equation}
+Lemma~\ref{lem:endpoint} makes the coefficient of $t^p$ zero modulo $p^2$.
+Both $K$ and $Y_p$ have degree at most $p$, so comparison through degree
+$p$ proves their congruence as polynomials. Multiplying by $C_{p+1}$
+proves \eqref{eq:finite-specialization}.
+
+We now specialize only these finite polynomials. The exact equation
+$\Tp(z,t_0)=0$ and \eqref{eq:Hecke-core} imply
+\[
+ z^p\bigl(C_p(t_0)+C_{p+1}(t_0)z\bigr)\equiv0\pmod{p^2}.
+\]
+Divide by the unit $z^p$, subtract \eqref{eq:finite-specialization}
+evaluated at $t_0$, and divide by the unit
+$C_{p+1}(t_0)\equiv1\pmod p$. The result is the claimed congruence.
+\end{proof}
+
+The upper degree $p$ in \eqref{eq:K} is needed: comparison through
+$p-1$ alone would not exclude an extra multiple of $t^p$.
+Equation~\eqref{eq:endpoint} treats exactly this endpoint.
+Every evaluation in Theorem~\ref{thm:specialization} is of a finite
+polynomial; it does not require evaluating an infinite series at a
+$p$-adic unit. The argument also needs only the modulus $p^2$ in
+\eqref{eq:Hecke-core}; the additional hypotheses in the stronger
+modulo-$p^3$ results of Beukers are not used.
+
+\section{The split primes and the Franel corollary}\label{sec:split}
+Let $p=x^2+3y^2\equiv1\pmod3$ be prime, with $x,y>0$.
+Then $\gcd(x,3y)=1$ and $x,y$ have opposite parity.
+Keep $\delta=\sqrt{-3}$ and $\beta=\delta/3$.
+We first construct exact complex roots of the Hecke polynomials at the
+rational parameters in \eqref{eq:CM-point}, then choose their $p$-adic
+embeddings.
+
+\subsection{The case \texorpdfstring{$y$}{y} even}
+Here $p\equiv1\pmod{12}$ and $\eps=1$.
+Choose $a_0,b_0\in\Z$ with $a_0x+3b_0y=1$ and set
+\begin{equation}\label{eq:CM-even}
+ M=\smat{a_0}{b_0}{-3y}{x}\in\Gamma_0(6),\qquad
+ k=b_0x-a_0y.
+\end{equation}
+The determinant is one and direct rationalization yields
+\begin{equation}\label{eq:CM-image-even}
+ M\beta=\frac{\beta+k}{p}.
+\end{equation}
+Indeed the rationalized numerator is
+$b_0x-a_0y+(a_0x+3b_0y)\delta/3=k+\beta$.
+The character is trivial on $M$, so \eqref{eq:transform} gives
+\begin{equation}\label{eq:root-even}
+ p^2\frac{\Theta_+(\beta)}{\Theta_+(M\beta)}
+ =\frac{p^2}{(x-y\delta)^2}=(x+y\delta)^2.
+\end{equation}
+This is an exact root of $\Tp(X,1/54)$ by the factor with index
+$k\bmod p$ in \eqref{eq:Hecke-product}; period one of $\Theta_+$ justifies
+reducing the index. The same equality holds with $\Theta_-$, giving an
+exact root of the corresponding polynomial at $1/50$.
+
+\subsection{The case \texorpdfstring{$y$}{y} odd}
+Here $x$ is even, $p\equiv7\pmod{12}$ and $\eps=-1$.
+Choose $a_0,b_0\in\Z$ with $3a_0y+b_0x=1$ and put
+\begin{equation}\label{eq:CM-odd}
+ M=\smat{3a_0}{b_0}{-3x}{3y},\qquad \det M=3,
+ \qquad k=b_0y-a_0x.
+\end{equation}
+Its extended-group class is $W_3$, since
+\begin{equation}\label{eq:CM-class}
+ MW_3^{-1}=
+ \smat{3a_0-2b_0}{b_0-a_0}{-3x-6y}{x+3y}\in\Gamma_0(6).
+\end{equation}
+The lower left entry is divisible by six because $x$ is even.
+Again
+\begin{equation}\label{eq:CM-image-odd}
+ M\beta=(\beta+k)/p.
+\end{equation}
+Here the rationalized numerator is
+$3k+(b_0x+3a_0y)\delta=3k+\delta$, and the denominator norm is $3p$.
+Using $\chi_+(M)=1$ and the determinant factor in
+\eqref{eq:transform}, we obtain the exact root
+\begin{equation}\label{eq:root-odd}
+ p^2\frac{\Theta_+(\beta)}{\Theta_+(M\beta)}
+ =\frac{3p^2}{(3y-x\delta)^2}
+ =\frac{(3y+x\delta)^2}{3}=-(x-y\delta)^2
+\end{equation}
+of $\Tp(X,1/54)$. For $\Theta_-$ the character on $W_3$ is $-1$,
+so the exact root of its polynomial at $1/50$ is instead
+$(x-y\delta)^2$.
+
+\subsection{The unit root and completion of the proof}
+Since $p\equiv1\pmod3$, $-3$ is a square modulo $p$.
+The two roots lift by Hensel's lemma, giving the two embeddings
+$\Q(\delta)\hookrightarrow\Q_p$. In either embedding the factors
+$x+y\delta$ and $x-y\delta$ are integral and their product is $p$.
+They cannot both vanish modulo $p$, for that would force $p\mid2x$ and
+$p\mid2y$. Thus their valuations are $0$ and $1$ in some order;
+the embeddings interchange that order.
+
+In the even case choose the embedding where $x+y\delta$ is a unit;
+in the odd case choose the one where $x-y\delta$ is a unit.
+The exhibited root is now a unit before we invoke
+Theorem~\ref{thm:specialization}. Its conjugate square is divisible by
+$p^2$, and the exact trace identity is
+\begin{equation}\label{eq:trace}
+ (x+y\delta)^2+(x-y\delta)^2=4x^2-2p.
+\end{equation}
+Since $1/54\in\Z_p$, Theorem~\ref{thm:specialization} and the roots
+\eqref{eq:root-even}, \eqref{eq:root-odd} give
+\begin{equation}\label{eq:split-values}
+ B_p\equiv
+ \begin{cases}
+ 4x^2-2p,&p\equiv1\pmod{12},\\
+ -(4x^2-2p),&p\equiv7\pmod{12}
+ \end{cases}\pmod{p^2}.
+\end{equation}
+Multiplication by $\eps$ proves the split branch of
+Theorem~\ref{thm:main}. The inert branch, including $p=5$, was proved
+in Section~\ref{sec:invariant}; hence the theorem holds for all $p>3$.
+
+The complex period ratios used here are defined because both forms are
+nonzero at $\beta$. The transformations identify those ratios with exact
+algebraic numbers. Only those algebraic numbers are subsequently embedded
+in $\Q_p$, so the construction requires no $p$-adic evaluation of complex
+eta series at the CM point.
+
+The evaluation in \eqref{eq:Franel-value} is the statement of
+Sun's 2018 Conjecture~3.5 \cite[Conjecture~3.5]{sunfranel}, distinct from
+the 2022 conjecture proved in Theorem~\ref{thm:main}.
+
+\begin{corollary}\label{cor:Franel}
+For every prime $p>5$,
+\begin{equation}\label{eq:Franel-value}
+ T_{50,p}\equiv
+ \begin{cases}
+ 4x^2-2p,&p=x^2+3y^2\equiv1\pmod3,\\
+ 0,&p\equiv2\pmod3
+ \end{cases}\pmod{p^2},
+\end{equation}
+and
+\begin{equation}\label{eq:bridge-corollary}
+ B_p\equiv\leg3p T_{50,p}\pmod{p^2}.
+\end{equation}
+\end{corollary}
+\begin{proof}
+For split primes the roots for $\Theta_-$ computed above are the unit
+square with positive sign in both parity cases. Since $1/50\in\Z_p$,
+Theorem~\ref{thm:specialization} and \eqref{eq:trace} give the split value
+in \eqref{eq:Franel-value}. Equation~\eqref{eq:inert-result} gives the
+inert value. For split primes quadratic reciprocity gives
+$\leg3p=(-1)^{(p-1)/2}=\eps$; for inert primes both sums are zero.
+This proves \eqref{eq:bridge-corollary} as a consequence of their separate
+evaluations.
+\end{proof}
+
+\appendix
+\section{Exact eta certificates}\label{app:certificates}
+This appendix specifies the finite calculations used in
+Proposition~\ref{prop:P} and Lemma~\ref{lem:E}.
+They certify identities because the proofs place the residuals in spaces
+of holomorphic modular forms with explicit valence bounds.
+
+For $E(\tau)=\prod_{d\mid6}\eta(d\tau)^{r_d}$,
+the weight is $\tfrac12\sum r_d$. The eta criterion uses
+$\sum dr_d\equiv\sum(6/d)r_d\equiv0\pmod{24}$; for the even weights
+here, the rational square condition on $\prod d^{r_d}$ gives trivial
+character. The cusp order at denominator $c\mid6$ is
+\begin{equation}\label{eq:Ligozat}
+ \frac6{24\gcd(c^2,6)}
+ \sum_{d\mid6}\frac{\gcd(c,d)^2}{d}r_d.
+\end{equation}
+The data are
+\begin{center}\small
+\begin{tabular}{c r r r c}
+\toprule
+Function&$(r_1,r_2,r_3,r_6)$&Weight&$(\sum dr_d,\sum(6/d)r_d)$
+ &Cusp orders\\\midrule
+$\A$&$(-5,7,7,-5)$&2&$(0,0)$&$(0,1,1,0)$\\
+$\B$&$(7,-5,-5,7)$&2&$(24,24)$&$(1,0,0,1)$\\
+$J$&$(2,2,2,2)$&4&$(24,24)$&$(1,1,1,1)$\\
+$h$&$(-5,1,-1,5)$&0&$(24,-24)$&$(-1,0,0,1)$\\
+$h_3$&$(-12,0,12,0)$&0&$(24,-48)$&$(-2,-1,2,1)$\\
+$R$&$(-12,12,12,-12)$&0&$(-24,-24)$&$(-1,1,1,-1)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+In every row, the valuations at $2,3$ of $\prod d^{r_d}$ are even.
+
+All required expansions use the integer product
+\begin{equation}\label{eq:eta-product-algorithm}
+ E(q)=q^s\prod_{m\ge1}(1-q^m)^{e_m},\qquad
+ s=\frac1{24}\sum dr_d,\qquad e_m=\sum_{d\mid m}r_d.
+\end{equation}
+For the coefficient of degree at most $N$, only factors with
+$m\le N-s$ contribute. Negative powers are expanded with the integer
+binomial coefficients for $(1-q^m)^{-r}$.
+An equivalent exact recurrence, for
+$\prod_{m\ge1}(1-q^m)^{e_m}=\sum_{n\ge0}c_nq^n$, is
+\begin{equation}\label{eq:eta-recurrence-algorithm}
+ c_0=1,\qquad
+ n c_n=-\sum_{j=1}^n\left(\sum_{d\mid j}d e_d\right)c_{n-j}.
+\end{equation}
+
+For the period certificate the required coefficients are
+\begin{center}\small
+\begin{tabular}{r r r r r r}
+\toprule
+$n$&$[q^n]\Theta_+$&$[q^n]W_+$&$[q^n]\Theta_-$&$[q^n]W_-$&$[q^n]J$\\\midrule
+0&1&1&1&1&0\\
+1&6&-8&4&-6&1\\
+2&6&-40&20&-78&-2\\
+3&42&-296&4&-114&-3\\
+4&6&-296&52&-654&4\\
+5&36&-1008&24&-756&6\\
+6&42&-1480&20&-1482&6\\
+7&48&-2752&32&-2064&-16\\
+8&6&-2344&116&-5262&-8\\\bottomrule
+\end{tabular}
+\end{center}
+Here $W_\pm=\Theta_\pm\dd J/J-2\dd\Theta_\pm$.
+Their coefficients can be obtained without division by a series of zero
+constant term by first writing $J=q\,j(q)$, $j(0)=1$, so that
+$\dd J/J=1+\dd j/j$. In computing through degree eight one expands
+$J$ through degree nine. Substitution of the table in
+\eqref{eq:P1} and~\eqref{eq:P2}, using
+$[q^n]\dd\Theta=n[q^n]\Theta$, gives the zero vector
+$(0,0,0,0,0,0,0,0,0)$ for each of the four residuals.
+
+For the geometric certificate the expansions are
+\begin{center}\small
+\begin{tabular}{r r r r}
+\toprule
+$n$&$[q^n]h$&$[q^n]h_3$&$[q^n]Rh$\\\midrule
+0&0&0&1\\
+1&1&1&17\\
+2&5&12&157\\
+3&19&90&1043\\
+4&61&508&5573\\
+5&174&2391&25422\\
+6&455&9828&102703\\
+7&1112&36428&376600\\
+8&2573&124188&1275445\\
+9&5689&395199&4041161\\
+10&12102&1186344&12096534\\\bottomrule
+\end{tabular}
+\end{center}
+These give $[q^0,\ldots,q^8]E_1=0$ and
+$[q^0,\ldots,q^{10}]E_2=0$.
+After multiplication by $M_1,M_2$ from Lemma~\ref{lem:E}, the monomials
+and their coefficients are
+\begin{center}\small
+\begin{tabular}{c c r}
+\toprule
+Residual&Exponents $(\eta_1,\eta_2,\eta_3,\eta_6)$&Coefficient\\\midrule
+$M_1E_1$&$(5,0,15,0)$&1\\
+&$(0,1,14,5)$&9\\
+&$(12,1,2,5)$&$-1$\\
+&$(7,2,1,10)$&$-16$\\
+&$(2,3,0,15)$&$-64$\\\midrule
+$M_2E_2$&$(0,13,13,0)$&1\\
+&$(17,0,2,7)$&$-1$\\
+&$(12,1,1,12)$&$-17$\\
+&$(7,2,0,17)$&$-72$\\\bottomrule
+\end{tabular}
+\end{center}
+Nonnegative eta exponents establish holomorphy of these sums at every
+cusp. Together with the multiplier argument and bounds $242>240$,
+$329>312$, these exact coefficients prove the full identities.
+
+The accompanying software, version~0.1.1, implements the integer products,
+the recurrence \eqref{eq:eta-recurrence-algorithm}, and the residual
+calculations. The companion repository is
+\begin{center}\small
+\url{https://github.com/aconsciousfractal/Sun-3-5-Supercongruence}
+\end{center}
+The repository README and \texttt{REPRODUCE.md} give the verification and
+build instructions.
+Its additional checks at bounded sets of primes are regression checks;
+the general conclusions follow from the arguments in the article.
+The evidence inventory is \texttt{EVIDENCE\_SHA256.txt}; its SHA-256 is
+\begin{center}\footnotesize\ttfamily
+0ccc5b0e4c68d98b05cb98714d9790377e9bc80a40a16004ecdf176736d4806b
+\end{center}
+This inventory identifies the companion code, tests, configuration and exact
+evidence, excluding the manuscript and prose that quote the digest.
+
+\section{Telescoping proofs of the sequence recurrences}
+\label{app:recurrences}
+For $n\ge2$, regard binomial terms with lower indices outside their
+natural range as zero. For the first sequence put
+$\tau(n,k)=\binom nk^2\binom{2k}k$ and
+\[
+ R_a(n,k)=\frac{k^3(3k-4n)}{n^2}.
+\]
+\begin{samepage}
+\allowdisplaybreaks[0]
+The ratio
+$\tau(n,k+1)/\tau(n,k)=2(2k+1)(n-k)^2/(k+1)^3$ gives the exact identity
+\begin{align}\label{eq:telescoping-a}
+ &n^2\tau(n,k)-(10n(n-1)+3)\tau(n-1,k)
+       +9(n-1)^2\tau(n-2,k)\notag\\
+ &\hspace{12mm}=R_a(n,k+1)\tau(n,k+1)-R_a(n,k)\tau(n,k).
+\end{align}
+\end{samepage}
+For example, after dividing by $\tau(n,k)$ the ratios of the two lower
+rows are $(n-k)^2/n^2$ and
+$(n-k)^2(n-k-1)^2/(n^2(n-1)^2)$, reducing the identity to a polynomial
+equality. Summation over $k=0,\ldots,n$ has zero lower boundary because
+$R_a(n,0)=0$, and zero upper boundary because $\tau(n,n+1)=0$.
+This proves \eqref{eq:recurrence} with $(a,b,c)=(10,3,9)$;
+the initial values are $a_0=1,a_1=3$.
+
+For the Franel sequence let $\tau(n,k)=\binom nk^3$ and set
+\begin{align*}
+ Q_f(n,k)&=4k^3+(6-18n)k^2+(27n^2-15n)k-14n^3+10n^2,\\
+ R_f(n,k)&=\frac{k^3Q_f(n,k)}{n^3(n-1)}.
+\end{align*}
+Now $\tau(n,k+1)/\tau(n,k)=(n-k)^3/(k+1)^3$, and direct polynomial
+expansion gives
+\begin{align}\label{eq:telescoping-f}
+ &n^2\tau(n,k)-(7n(n-1)+2)\tau(n-1,k)
+       -8(n-1)^2\tau(n-2,k)\notag\\
+ &\hspace{12mm}=R_f(n,k+1)\tau(n,k+1)-R_f(n,k)\tau(n,k).
+\end{align}
+The lower-row ratios here are $(n-k)^3/n^3$ and
+$(n-k)^3(n-k-1)^3/(n^3(n-1)^3)$.
+Both boundaries again vanish, so summation proves
+\eqref{eq:recurrence} with $(a,b,c)=(7,2,-8)$.
+The initial values $f_0=1,f_1=2$ are immediate.
+No endpoint certificate has a pole in the summation index: the
+denominators displayed above depend only on $n\ge2$.
+
+\begin{thebibliography}{9}
+\bibitem{sun}
+Zhi-Hong Sun,
+\emph{Supercongruences involving Ap\'ery-like numbers and binomial coefficients},
+AIMS Mathematics \textbf{7}(2) (2022), 2729--2781.
+\href{https://doi.org/10.3934/math.2022153}{doi:10.3934/math.2022153}.
+
+\bibitem{sunfranel}
+Zhi-Hong Sun,
+\emph{Congruences for sums involving Franel numbers},
+International Journal of Number Theory \textbf{14}(1) (2018), 123--142.
+\href{https://maths.hytc.edu.cn/__local/3/45/77/77F7497DDFD531E8688ED13C0D0_262306C8_24EB4.pdf}{Author's full text}.
+
+\bibitem{beukers}
+Frits Beukers,
+\emph{Supercongruences using modular forms},
+arXiv:2403.03301v3 (2025).
+\url{https://arxiv.org/abs/2403.03301v3}.
+
+\bibitem{rousewebb}
+Jeremy Rouse and John J. Webb,
+\emph{On spaces of modular forms spanned by eta-quotients},
+arXiv:1311.1460v3 (2014).
+\url{https://arxiv.org/abs/1311.1460v3}.
+
+\bibitem{dlmf}
+NIST Digital Library of Mathematical Functions,
+Section~23.18, \emph{Modular Transformations}, equations 23.18.5--23.18.7.
+\url{https://dlmf.nist.gov/23.18}.
+\end{thebibliography}
+\end{document}
