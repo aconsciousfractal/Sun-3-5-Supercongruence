@@ -12,8 +12,8 @@ geometry, amsmath, amssymb, amsthm, booktabs, array and hyperref.
 
 | Artifact | SHA-256 |
 | --- | --- |
-| Sun_3_5_Supercongruence.tex | `e481172cc59def29ef32a925627912c8eb99f393c1ac4da6fdf797b669c8e1a9` |
-| Sun_3_5_Supercongruence.pdf | `7219e00b24e06a58101b7058fb0e927b6d255584ad4e1b45bb5cd3d570b5879f` |
+| Sun_3_5_Supercongruence.tex | `a97307ebb92843819c7d889879ecdc86c397d2b7a77f3291001a699d9e1b2b0b` |
+| Sun_3_5_Supercongruence.pdf | `613e3274c232962ee801b6b0ccb5b49174ae0606fbb395e9422b02b19f302fab` |
 
 Run `python -B scripts/build_pdf.py` from the repository root. This writes into
 the ignored paper/build directory, leaving the delivered PDF unchanged. See
@@ -24,6 +24,7 @@ package versions and fonts. A different TeX installation may produce a visually
 equivalent PDF with different bytes. A file digest is an identity check, not a
 mathematical or editorial review.
 
-The recorded PDF was also rebuilt from the extracted source archive using the
-same installed engine and packages; its SHA-256 was identical to the delivered
-PDF above. All 14 rendered pages were visually inspected.
+Version 0.1.2 adds the manuscript AI-use disclosure. The three-pass build
+completed without warnings. Pages 1--12 render identically to version 0.1.1;
+the changed pages 13--14 were visually inspected. The mathematical source
+is unchanged; only the disclosure, package version and inventory digest differ.

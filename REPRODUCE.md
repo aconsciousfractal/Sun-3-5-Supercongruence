@@ -68,7 +68,7 @@ After deliberate reviewed edits, `scripts/check_manifest.py --write` and
 `--write --evidence` are explicit authoring operations.
 
 ```text
-python -B scripts/make_archive.py --output <existing-output-directory>/Sun-3-5-Supercongruence-0.1.1.zip
+python -B scripts/make_archive.py --output <existing-output-directory>/Sun-3-5-Supercongruence-0.1.2.zip
 ```
 
 Replace the placeholder with an existing writable directory outside the repository;

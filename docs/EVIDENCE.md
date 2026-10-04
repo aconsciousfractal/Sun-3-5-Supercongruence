@@ -21,10 +21,10 @@ EVIDENCE_SHA256.txt covers the code, tests, verification configuration and these
 five files. The paper/prose are excluded from that digest to avoid a circular
 identity. The full delivered tree is instead covered by MANIFEST_SHA256.txt.
 
-Version 0.1.1 evidence-inventory SHA-256 (the hash of EVIDENCE_SHA256.txt itself):
+Version 0.1.2 evidence-inventory SHA-256 (the hash of EVIDENCE_SHA256.txt itself):
 
 ```text
-0ccc5b0e4c68d98b05cb98714d9790377e9bc80a40a16004ecdf176736d4806b
+a8bb62720842b534d6d92927c0ac628f33d922eb07d95d642a86d4c8efb63214
 ```
 
 The core record contains 301 primes (148 split, 153 inert), 398 comparisons

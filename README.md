@@ -2,7 +2,10 @@
 
 **Oleksiy Babanskyy**
 
-Manuscript and exact-arithmetic companion, version **0.1.1**.
+Manuscript and exact-arithmetic companion, version **0.1.2**.
+
+This editorial revision adds the AI-use disclosure to the manuscript.
+The mathematical arguments, companion code and computational results are unchanged.
 
 For
 $$
