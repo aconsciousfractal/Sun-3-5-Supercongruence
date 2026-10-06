@@ -12,8 +12,8 @@ geometry, amsmath, amssymb, amsthm, booktabs, array and hyperref.
 
 | Artifact | SHA-256 |
 | --- | --- |
-| Sun_3_5_Supercongruence.tex | `a97307ebb92843819c7d889879ecdc86c397d2b7a77f3291001a699d9e1b2b0b` |
-| Sun_3_5_Supercongruence.pdf | `613e3274c232962ee801b6b0ccb5b49174ae0606fbb395e9422b02b19f302fab` |
+| Sun_3_5_Supercongruence.tex | `cb4b8bd8b2c5d4251a7f8bd2865d9a053a8ce3b717ac2385cfc894d830d5d1da` |
+| Sun_3_5_Supercongruence.pdf | `ba64bf6f7a8a14e64fe9a25d168566740b906811308f64f5f0b1280b9db2dd94` |
 
 Run `python -B scripts/build_pdf.py` from the repository root. This writes into
 the ignored paper/build directory, leaving the delivered PDF unchanged. See
@@ -24,7 +24,9 @@ package versions and fonts. A different TeX installation may produce a visually
 equivalent PDF with different bytes. A file digest is an identity check, not a
 mathematical or editorial review.
 
-Version 0.1.2 adds the manuscript AI-use disclosure. The three-pass build
-completed without warnings. Pages 1--12 render identically to version 0.1.1;
-the changed pages 13--14 were visually inspected. The mathematical source
-is unchanged; only the disclosure, package version and inventory digest differ.
+Version 0.1.3 simplifies notation and clarifies the finite-specialization
+hypothesis and attribution; see [revision notes](../docs/REVISION_NOTES.md).
+The three-pass build completed without warnings. All 14 pages were visually
+reviewed, including the coefficient tables, acknowledgments, AI disclosure
+and compact bibliography. Printed coefficient tables agree with the fresh
+exact replay. The theorem statements and companion computations are unchanged.

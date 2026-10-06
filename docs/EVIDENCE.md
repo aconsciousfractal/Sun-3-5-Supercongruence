@@ -21,10 +21,10 @@ EVIDENCE_SHA256.txt covers the code, tests, verification configuration and these
 five files. The paper/prose are excluded from that digest to avoid a circular
 identity. The full delivered tree is instead covered by MANIFEST_SHA256.txt.
 
-Version 0.1.2 evidence-inventory SHA-256 (the hash of EVIDENCE_SHA256.txt itself):
+Version 0.1.3 evidence-inventory SHA-256 (the hash of EVIDENCE_SHA256.txt itself):
 
 ```text
-a8bb62720842b534d6d92927c0ac628f33d922eb07d95d642a86d4c8efb63214
+1699783d715bc7a70a82aae729ef364ff048763b546e11824409f5090d6b0846
 ```
 
 The core record contains 301 primes (148 split, 153 inert), 398 comparisons
@@ -32,3 +32,7 @@ with original binomial definitions, 602 endpoint checks, 88 invariant
 polynomials and eight Hecke polynomials with 653 integer coefficients.
 Optional symbolic mode checks 15 formal identities; it is intentionally absent
 from the five-file core inventory and must be requested explicitly.
+
+The manuscript uses the direct values `G_p(1/54)` and `F_p(1/50)`.
+The stable JSON keys `B_mod_p2` and `T50_mod_p2` denote their residues,
+respectively; the evidence schema and stored numerical values are unchanged.

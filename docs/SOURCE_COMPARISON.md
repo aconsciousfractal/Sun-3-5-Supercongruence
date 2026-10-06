@@ -3,14 +3,15 @@
 The article proves the statement printed as Conjecture 3.5 in Sun's 2022 paper.
 This identifies the target without asserting that this is its first proof.
 The following comparison records a bounded search and targeted primary-source
-reading on 2026-10-03; it is not an exhaustive priority determination.
+reading on 2026-10-03, with the proof inputs rechecked on 2026-10-06;
+it is not an exhaustive priority determination.
 
 ## Sources used in the proof
 
 | Source | Exact role | Boundary |
 | --- | --- | --- |
 | Z.-H. Sun, *Supercongruences involving Apéry-like numbers and binomial coefficients*, AIMS Mathematics 7(2) (2022), 2729–2781, [DOI 10.3934/math.2022153](https://doi.org/10.3934/math.2022153), [publisher PDF](https://www.aimspress.com/aimspress-data/math/2022/2/PDF/math-07-02-153.pdf) | Conjecture 3.5, printed p.2742, is the target. Theorem 3.5 and its proof, p.2739, supply the inert mod-p input for p>5. Definitions and recurrences are on pp.2729–2730. | Theorem 3.5 and Conjecture 3.5 are different statements. The article proves its own recurrences in Appendix B, lifts the inert congruence to p², and treats p=5 separately. |
-| F. Beukers, *Supercongruences using modular forms*, [arXiv:2403.03301v3](https://arxiv.org/abs/2403.03301v3), 16 June 2025 | Lemma 3.7, pp.17–18, and §5 provide the modular-polynomial method; §9.15, p.33, records the Franel model and parameter 1/50. | The character must extend to the Atkin–Lehner group and be trivial on the base group. The stronger p³ theorem has additional hypotheses; it is not applied to these examples. The present article proves the required weaker p² construction. |
+| F. Beukers, *Supercongruences using modular forms*, [arXiv:2403.03301v3](https://arxiv.org/abs/2403.03301v3), 16 June 2025 | Lemma 3.7, pp.17–18, and §5 provide the modular-polynomial method; the proof of Theorem 6.1, p.24, gives the degree-p coefficient-comparison mechanism; §9.15, p.33, records the Franel model and parameter 1/50. | The character must extend to the Atkin–Lehner group and be trivial on the base group. The stronger p³ theorem has additional hypotheses; it is not applied to these examples. The present article proves the required weaker p² construction. |
 | J. Rouse and J. J. Webb, *On spaces of modular forms spanned by eta-quotients*, [arXiv:1311.1460v3](https://arxiv.org/abs/1311.1460v3), 14 November 2014 | Eta modularity criterion and cusp-order formula, p.2. | The transformation conditions alone do not establish cusp holomorphy. The article lists and checks the cusp data. |
 | [NIST DLMF §23.18](https://dlmf.nist.gov/23.18), equations 23.18.5–23.18.7 | Eta transformation and Dedekind-sum phases. | The displayed transformation in the article is for determinant-one integral matrices. Determinant-three and determinant-six transformations are derived by composition. |
 

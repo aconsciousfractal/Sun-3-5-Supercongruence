@@ -2,19 +2,21 @@
 
 **Oleksiy Babanskyy**
 
-Manuscript and exact-arithmetic companion, version **0.1.2**.
+Manuscript and exact-arithmetic companion, version **0.1.3**.
 
-This editorial revision adds the AI-use disclosure to the manuscript.
-The mathematical arguments, companion code and computational results are unchanged.
+This revision simplifies notation following comments from Zhi-Hong Sun,
+states the prime hypothesis explicitly in the finite-specialization theorem,
+and clarifies the attribution of its endpoint argument. The conclusions,
+companion code and computational results are unchanged.
 
 For
 $$
 a_n=\sum_{j=0}^{n}\binom{n}{j}^{2}\binom{2j}{j},
-\qquad B_p=\sum_{n=0}^{p-1}\frac{\binom{2n}{n}a_n}{54^n},
+\qquad G_p(1/54)=\sum_{n=0}^{p-1}\frac{\binom{2n}{n}a_n}{54^n},
 $$
 the paper proves, for every prime $p>3$,
 $$
-(-1)^{(p-1)/2}B_p\equiv
+(-1)^{(p-1)/2}G_p(1/54)\equiv
 \begin{cases}
 4x^2-2p \pmod{p^2},&p=x^2+3y^2\equiv1\pmod3,\\
 0 \pmod{p^2},&p\equiv2\pmod3.
@@ -35,6 +37,7 @@ $p=5$ is handled directly.
 - [Reading path](README_REVIEWER.md) and [reproduction](REPRODUCE.md)
 - [Claim and evidence map](docs/CLAIM_MAP.md)
 - [Sources and attribution](docs/SOURCE_COMPARISON.md), [scope and limits](docs/KNOWN_LIMITS.md)
+- [Revision 0.1.3 and review scope](docs/REVISION_NOTES.md)
 
 From the repository root, with Python 3.10 or newer:
 
@@ -53,7 +56,7 @@ five delivered JSON files. It does not infer a theorem from a finite prime
 window. Optional symbolic checks and the existing-pdflatex build are described
 in REPRODUCE.
 
-The work has not undergone independent specialist human review. No claim of
+The work has not undergone full independent specialist refereeing. No claim of
 bibliographic priority is made. See [AI assistance](AI_USE.md).
 Code, data and documentation use [MIT](LICENSE); the manuscript uses
 [CC BY 4.0](LICENSE_MANUSCRIPT.md). See [licence scope](LICENSE_SCOPE.md)

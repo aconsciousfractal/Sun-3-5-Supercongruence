@@ -22,7 +22,6 @@
 \newcommand{\HH}{\mathfrak H}
 \newcommand{\A}{\mathcal A}\newcommand{\B}{\mathcal B}
 \newcommand{\dd}{\partial}\newcommand{\Tp}{\mathcal T_p}
-\newcommand{\eps}{\epsilon_p}
 \newcommand{\leg}[2]{\left(\frac{#1}{#2}\right)}
 \newcommand{\smat}[4]{\begin{pmatrix}#1&#2\\#3&#4\end{pmatrix}}
 \DeclareMathOperator{\ord}{ord}
@@ -54,28 +53,24 @@ of the Franel sum with denominator $50$ follows by the same arguments.
 For $n\ge0$ define
 \begin{equation}\label{eq:sequences}
  a_n=\sum_{j=0}^n\binom nj^2\binom{2j}j,
- \qquad f_n=\sum_{j=0}^n\binom nj^3,
- \qquad g_n=\binom{2n}n a_n,
- \qquad b_n=\binom{2n}n f_n.
+ \qquad f_n=\sum_{j=0}^n\binom nj^3.
 \end{equation}
 The integers $f_n$ are the Franel numbers. Write
 \begin{equation}\label{eq:sums}
- G(t)=\sum_{n\ge0}g_nt^n,\qquad F(t)=\sum_{n\ge0}b_nt^n,
- \qquad Y_p(t)=\sum_{n=0}^{p-1}y_nt^n
- \quad\text{if }Y(t)=\sum_{n\ge0}y_nt^n.
+ G(t)=\sum_{n\ge0}\binom{2n}n a_nt^n,
+ \qquad F(t)=\sum_{n\ge0}\binom{2n}n f_nt^n.
 \end{equation}
-In particular, all truncations in this article end at $p-1$. We use
-\begin{equation}\label{eq:B-T}
- B_p=G_p(1/54),\qquad T_{50,p}=F_p(1/50),
- \qquad\eps=(-1)^{(p-1)/2}.
-\end{equation}
-The first sum is $p$-integral for $p>3$; the second is used only for $p>5$.
+For a series $Y(t)=\sum_{n\ge0}y_nt^n$, write
+$Y_p(t)=\sum_{n=0}^{p-1}y_nt^n$.
+Thus all truncations in this article end at $p-1$.
+The sum $G_p(1/54)$ is $p$-integral for $p>3$;
+the sum $F_p(1/50)$ is used only for $p>5$.
 Congruences between $p$-integral rational numbers are interpreted in $\Z_p$.
 
 \begin{theorem}\label{thm:main}
 For every prime $p>3$,
 \begin{equation}\label{eq:main}
- \eps B_p\equiv
+ (-1)^{(p-1)/2} G_p(1/54)\equiv
  \begin{cases}
  4x^2-2p,&p=x^2+3y^2\equiv1\pmod3,\\
  0,&p\equiv2\pmod3
@@ -90,7 +85,7 @@ representation; the signs of $x,y$ do not affect the expression $4x^2-2p$.
 Theorem~3.5 of the same paper, on p.~2739, concerns the distinct congruence
 modulo $p$. Its vanishing statement and proof give the input
 \begin{equation}\label{eq:Sun-input}
- B_p\equiv T_{50,p}\equiv0\pmod p
+ G_p(1/54)\equiv F_p(1/50)\equiv0\pmod p
  \qquad(p>5,\ p\equiv2\pmod3).
 \end{equation}
 Only this modulo-$p$ result is used in the inert branch below.
@@ -253,12 +248,12 @@ The evaluation points $1/54$ and $1/50$ and the displayed discriminant
 values are units for $p>5$.
 Equations~\eqref{eq:Sun-input} and~\eqref{eq:lift} give
 \begin{equation}\label{eq:inert-result}
- B_p\equiv T_{50,p}\equiv0\pmod{p^2}
+ G_p(1/54)\equiv F_p(1/50)\equiv0\pmod{p^2}
  \qquad(p>5,\ p\equiv2\pmod3).
 \end{equation}
 For $p=5$ the first discriminant is not a unit, so we calculate directly.
 The initial values $a_0,\ldots,a_4$ are $1,3,15,93,639$.
-The five summands of $B_5$ are respectively $1,14,15,15,5$ modulo $25$;
+The five summands of $G_5(1/54)$ are respectively $1,14,15,15,5$ modulo $25$;
 their sum is $50\equiv0\pmod{25}$.
 This completes the inert branch of Theorem~\ref{thm:main}.
 
@@ -695,8 +690,8 @@ $C_{p+1}\equiv1\pmod p$.
 \begin{lemma}\label{lem:endpoint}
 For every prime $p>3$,
 \begin{equation}\label{eq:endpoint}
- g_p\equiv g_1=6\pmod{p^2},\qquad
- b_p\equiv b_1=4\pmod{p^2}.
+ \binom{2p}p a_p\equiv6\pmod{p^2},\qquad
+ \binom{2p}p f_p\equiv4\pmod{p^2}.
 \end{equation}
 \end{lemma}
 \begin{proof}
@@ -713,7 +708,7 @@ $f_p\equiv2\pmod{p^3}$. Multiplication proves \eqref{eq:endpoint}.
 \end{proof}
 
 \begin{theorem}[Finite specialization]\label{thm:specialization}
-For either pair of period and parameter, the polynomial identity
+Let $p>3$ be prime. For either pair of period and parameter, the polynomial identity
 \begin{equation}\label{eq:finite-specialization}
  C_p(t)+C_{p+1}(t)Y_p(t)\equiv0\pmod{p^2}
 \end{equation}
@@ -737,7 +732,8 @@ $t^\sigma=t(q(t)^p)=t^p+O(t^{p+1})$. Hence
 \begin{equation}\label{eq:Q-boundary}
  Q=Y_p(t)+(y_p-y_1)t^p+O(t^{p+1}).
 \end{equation}
-Lemma~\ref{lem:endpoint} makes the coefficient of $t^p$ zero modulo $p^2$.
+Lemma~\ref{lem:endpoint} makes the coefficient of $t^p$ zero modulo $p^2$:
+the coefficient $y_1$ is $6$ for $G$ and $4$ for $F$.
 Both $K$ and $Y_p$ have degree at most $p$, so comparison through degree
 $p$ proves their congruence as polynomials. Multiplying by $C_{p+1}$
 proves \eqref{eq:finite-specialization}.
@@ -754,7 +750,9 @@ $C_{p+1}(t_0)\equiv1\pmod p$. The result is the claimed congruence.
 
 The upper degree $p$ in \eqref{eq:K} is needed: comparison through
 $p-1$ alone would not exclude an extra multiple of $t^p$.
-Equation~\eqref{eq:endpoint} treats exactly this endpoint.
+Equation~\eqref{eq:endpoint} treats exactly this endpoint. This coefficient
+comparison follows the mechanism in the proof of
+\cite[Theorem~6.1]{beukers}, here with degree bound $p$ and modulus $p^2$.
 Every evaluation in Theorem~\ref{thm:specialization} is of a finite
 polynomial; it does not require evaluating an infinite series at a
 $p$-adic unit. The argument also needs only the modulus $p^2$ in
@@ -770,7 +768,7 @@ rational parameters in \eqref{eq:CM-point}, then choose their $p$-adic
 embeddings.
 
 \subsection{The case \texorpdfstring{$y$}{y} even}
-Here $p\equiv1\pmod{12}$ and $\eps=1$.
+Here $p\equiv1\pmod{12}$ and $(-1)^{(p-1)/2}=1$.
 Choose $a_0,b_0\in\Z$ with $a_0x+3b_0y=1$ and set
 \begin{equation}\label{eq:CM-even}
  M=\smat{a_0}{b_0}{-3y}{x}\in\Gamma_0(6),\qquad
@@ -793,7 +791,7 @@ reducing the index. The same equality holds with $\Theta_-$, giving an
 exact root of the corresponding polynomial at $1/50$.
 
 \subsection{The case \texorpdfstring{$y$}{y} odd}
-Here $x$ is even, $p\equiv7\pmod{12}$ and $\eps=-1$.
+Here $x$ is even, $p\equiv7\pmod{12}$ and $(-1)^{(p-1)/2}=-1$.
 Choose $a_0,b_0\in\Z$ with $3a_0y+b_0x=1$ and put
 \begin{equation}\label{eq:CM-odd}
  M=\smat{3a_0}{b_0}{-3x}{3y},\qquad \det M=3,
@@ -842,13 +840,13 @@ $p^2$, and the exact trace identity is
 Since $1/54\in\Z_p$, Theorem~\ref{thm:specialization} and the roots
 \eqref{eq:root-even}, \eqref{eq:root-odd} give
 \begin{equation}\label{eq:split-values}
- B_p\equiv
+ G_p(1/54)\equiv
  \begin{cases}
  4x^2-2p,&p\equiv1\pmod{12},\\
  -(4x^2-2p),&p\equiv7\pmod{12}
  \end{cases}\pmod{p^2}.
 \end{equation}
-Multiplication by $\eps$ proves the split branch of
+Multiplication by $(-1)^{(p-1)/2}$ proves the split branch of
 Theorem~\ref{thm:main}. The inert branch, including $p=5$, was proved
 in Section~\ref{sec:invariant}; hence the theorem holds for all $p>3$.
 
@@ -865,7 +863,7 @@ the 2022 conjecture proved in Theorem~\ref{thm:main}.
 \begin{corollary}\label{cor:Franel}
 For every prime $p>5$,
 \begin{equation}\label{eq:Franel-value}
- T_{50,p}\equiv
+ F_p(1/50)\equiv
  \begin{cases}
  4x^2-2p,&p=x^2+3y^2\equiv1\pmod3,\\
  0,&p\equiv2\pmod3
@@ -873,7 +871,7 @@ For every prime $p>5$,
 \end{equation}
 and
 \begin{equation}\label{eq:bridge-corollary}
- B_p\equiv\leg3p T_{50,p}\pmod{p^2}.
+ G_p(1/54)\equiv\leg3p F_p(1/50)\pmod{p^2}.
 \end{equation}
 \end{corollary}
 \begin{proof}
@@ -882,7 +880,7 @@ square with positive sign in both parity cases. Since $1/50\in\Z_p$,
 Theorem~\ref{thm:specialization} and \eqref{eq:trace} give the split value
 in \eqref{eq:Franel-value}. Equation~\eqref{eq:inert-result} gives the
 inert value. For split primes quadratic reciprocity gives
-$\leg3p=(-1)^{(p-1)/2}=\eps$; for inert primes both sums are zero.
+$\leg3p=(-1)^{(p-1)/2}$; for inert primes both sums are zero.
 This proves \eqref{eq:bridge-corollary} as a consequence of their separate
 evaluations.
 \end{proof}
@@ -1001,7 +999,7 @@ Nonnegative eta exponents establish holomorphy of these sums at every
 cusp. Together with the multiplier argument and bounds $242>240$,
 $329>312$, these exact coefficients prove the full identities.
 
-The accompanying software, version~0.1.2, implements the integer products,
+The accompanying software, version~0.1.3, implements the integer products,
 the recurrence \eqref{eq:eta-recurrence-algorithm}, and the residual
 calculations. The companion repository is
 \begin{center}\small
@@ -1013,7 +1011,7 @@ Its additional checks at bounded sets of primes are regression checks;
 the general conclusions follow from the arguments in the article.
 The evidence inventory is \texttt{EVIDENCE\_SHA256.txt}; its SHA-256 is
 \begin{center}\footnotesize\ttfamily
-a8bb62720842b534d6d92927c0ac628f33d922eb07d95d642a86d4c8efb63214
+1699783d715bc7a70a82aae729ef364ff048763b546e11824409f5090d6b0846
 \end{center}
 This inventory identifies the companion code, tests, configuration and exact
 evidence, excluding the manuscript and prose that quote the digest.
@@ -1064,6 +1062,10 @@ The initial values $f_0=1,f_1=2$ are immediate.
 No endpoint certificate has a pole in the summation index: the
 denominators displayed above depend only on $n\ge2$.
 
+\paragraph{Acknowledgments.}
+The author thanks Zhi-Hong Sun for helpful comments on the manuscript,
+including suggestions that simplified its notation.
+
 \section*{AI assistance and responsibility}
 AI assistance under the author's direction was used for mathematical
 exploration, proof criticism, source comparison, manuscript drafting,
@@ -1077,7 +1079,9 @@ are not attributed to particular AI systems. Oleksiy Babanskyy is the human
 author and is responsible for the manuscript, source attribution, licence
 boundaries and final decision to publish.
 
+\begingroup\small
 \begin{thebibliography}{9}
+\raggedright
 \bibitem{sun}
 Zhi-Hong Sun,
 \emph{Supercongruences involving Ap\'ery-like numbers and binomial coefficients},
@@ -1093,18 +1097,17 @@ International Journal of Number Theory \textbf{14}(1) (2018), 123--142.
 \bibitem{beukers}
 Frits Beukers,
 \emph{Supercongruences using modular forms},
-arXiv:2403.03301v3 (2025).
-\url{https://arxiv.org/abs/2403.03301v3}.
+\href{https://arxiv.org/abs/2403.03301v3}{arXiv:2403.03301v3} (2025).
 
 \bibitem{rousewebb}
 Jeremy Rouse and John J. Webb,
 \emph{On spaces of modular forms spanned by eta-quotients},
-arXiv:1311.1460v3 (2014).
-\url{https://arxiv.org/abs/1311.1460v3}.
+\href{https://arxiv.org/abs/1311.1460v3}{arXiv:1311.1460v3} (2014).
 
 \bibitem{dlmf}
 NIST Digital Library of Mathematical Functions,
 Section~23.18, \emph{Modular Transformations}, equations 23.18.5--23.18.7.
 \url{https://dlmf.nist.gov/23.18}.
 \end{thebibliography}
+\endgroup
 \end{document}
